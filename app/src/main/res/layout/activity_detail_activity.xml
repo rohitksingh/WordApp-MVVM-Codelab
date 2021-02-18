@@ -6,14 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools">
     <EditText
         android:id="@+id/editWord"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="32dp"
+        android:background="@color/design_default_color_secondary"
         app:layout_constraintVertical_bias="0.19999999" />
-
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"

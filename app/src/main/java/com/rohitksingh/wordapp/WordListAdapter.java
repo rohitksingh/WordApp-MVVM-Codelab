@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -39,7 +41,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     @Override
     public int getItemCount() {
-        return allWords.size();
+        return (allWords!=null) ? allWords.size() : 0;
     }
 
     class WordViewHolder extends RecyclerView.ViewHolder{
