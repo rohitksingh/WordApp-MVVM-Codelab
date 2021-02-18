@@ -15,6 +15,9 @@ public class Word implements Serializable {
     @ColumnInfo(name = "word")
     public String word;
 
+    @ColumnInfo(name = "quantity")
+    public int quantity;
+
     public Word(@NonNull String word) {
         this.word = word;
     }
@@ -23,4 +26,11 @@ public class Word implements Serializable {
         return word;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

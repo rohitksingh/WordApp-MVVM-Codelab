@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Shopping List</string>
     <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="add_a_word">Write a word</string>
+    <string name="add_more">+</string>
+    <string name="add_less">-</string>
 </resources>

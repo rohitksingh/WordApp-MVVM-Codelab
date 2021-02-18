@@ -24,7 +24,7 @@ public class WordDetailActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_activity);
+        setContentView(R.layout.activity_word_detail);
         editWord = findViewById(R.id.editWord);
         button = findViewById(R.id.save);
         button.setOnClickListener(this);

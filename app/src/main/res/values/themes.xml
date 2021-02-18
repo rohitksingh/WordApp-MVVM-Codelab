@@ -23,4 +23,10 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <style name="QuantityButtons">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
 </resources>
