@@ -4,5 +4,7 @@ import com.rohitksingh.wordapp.models.Word;
 
 public interface ListItemClickListener {
 
-    public void itemClicked(int position, Word word);
+    void deleteItem(int position, Word word);
+
+    void editItem(int position, Word word);
 }

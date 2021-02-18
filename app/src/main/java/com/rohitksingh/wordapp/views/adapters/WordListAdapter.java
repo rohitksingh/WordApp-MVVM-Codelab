@@ -1,7 +1,6 @@
 package com.rohitksingh.wordapp.views.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,17 +65,37 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         private final TextView wordTextView;
         private Button deleteButton;
+        private Button editButton;
 
         WordViewHolder(@NonNull View itemView) {
             super(itemView);
             wordTextView = itemView.findViewById(R.id.word);
             deleteButton = itemView.findViewById(R.id.delete);
+            editButton = itemView.findViewById(R.id.edit);
             deleteButton.setOnClickListener(this);
+            editButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            itemClickListener.itemClicked(getAdapterPosition(), allWords.get(getAdapterPosition()));
+
+            int index = getAdapterPosition();
+            Word word = allWords.get(index);
+
+            switch (view.getId()){
+
+                case R.id.delete:
+                    itemClickListener.deleteItem(index, word);
+                    break;
+
+                case R.id.edit:
+                    itemClickListener.editItem(index, word);
+                    break;
+
+                default:
+                    break;
+            }
+
         }
 
         public void bind(Word word){

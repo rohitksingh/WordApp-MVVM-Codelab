@@ -68,8 +68,13 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void itemClicked(int position, Word word) {
-        deleteItem(position, word);
+    public void deleteItem(int position, Word word) {
+        deleteWord(position, word);
+    }
+
+    @Override
+    public void editItem(int position, Word word) {
+        openEditActivity(word);
     }
 
     /***********************************************************************************************
@@ -79,7 +84,14 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         startActivityForResult(new Intent(this, WordDetailActivity.class), 2002);
     }
 
-    private void deleteItem(int position, Word word){
+    private void openEditActivity(Word word){
+        Intent editWord = new Intent(this, WordEditActivity.class);
+        editWord.putExtra(WordEditActivity.EDIT_WORD, word);
+        startActivityForResult(editWord, 3003);
+
+    }
+
+    private void deleteWord(int position, Word word){
         wordViewModel.deleteWord(word);
     }
 }
