@@ -45,12 +45,7 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         wordViewModel = new WordListViewModel(getApplication());
 
-        wordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
-            @Override
-            public void onChanged(List<Word> words) {
-                wordListAdapter.setAllWords(words);
-            }
-        });
+        wordViewModel.getAllWords().observe(this, words -> { wordListAdapter.setAllWords(words);});
 
     }
 
