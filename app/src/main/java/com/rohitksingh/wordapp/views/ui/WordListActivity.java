@@ -14,13 +14,14 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rohitksingh.wordapp.R;
+import com.rohitksingh.wordapp.callbacks.ListItemClickListener;
 import com.rohitksingh.wordapp.models.Word;
 import com.rohitksingh.wordapp.views.adapters.WordListAdapter;
 import com.rohitksingh.wordapp.viewmodels.WordListViewModel;
 
 import java.util.List;
 
-public class WordListActivity extends AppCompatActivity implements View.OnClickListener {
+public class WordListActivity extends AppCompatActivity implements View.OnClickListener, ListItemClickListener {
 
     public static final String NEW_ADDED_WORD = "WordListActivity.NewAddedWord";
 
@@ -59,12 +60,21 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    @Override
+    public void onClick(View view) {
+        openDetailActivity();
+    }
+
+    @Override
+    public void itemClicked(int position, Word word) {
+        deleteItem(position, word);
+    }
+
     private void openDetailActivity(){
         startActivityForResult(new Intent(this, WordDetailActivity.class), 2002);
     }
 
-    @Override
-    public void onClick(View view) {
-        openDetailActivity();
+    private void deleteItem(int position, Word word){
+        wordViewModel.deleteWord(word);
     }
 }
