@@ -11,7 +11,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder {
+public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder>{
 
     private LayoutInflater inflater;
     private List<Word> allWords;
