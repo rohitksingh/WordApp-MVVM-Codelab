@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="64dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/design_default_color_primary">
+    android:background="@color/design_default_color_primary"
+    android:layout_margin="4sp">
     <TextView
         android:id="@+id/word"
         android:layout_width="wrap_content"
