@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.rohitksingh.wordapp.R;
 import com.rohitksingh.wordapp.models.Word;
@@ -16,7 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class WordDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editWord;
-    private Button button;
+    private Button button, addMore, addLess;
+    private TextView quantityTextView;
+    int quantity = 0;
 
     /***********************************************************************************************
      *                              Lifecycle Methods
@@ -26,8 +29,13 @@ public class WordDetailActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_detail);
         editWord = findViewById(R.id.editWord);
+        quantityTextView = findViewById(R.id.quantity);
         button = findViewById(R.id.save);
+        addMore = findViewById(R.id.addMore);
+        addLess = findViewById(R.id.addLess);
         button.setOnClickListener(this);
+        addMore.setOnClickListener(this);
+        addLess.setOnClickListener(this);
     }
 
 
@@ -36,10 +44,42 @@ public class WordDetailActivity extends AppCompatActivity implements View.OnClic
      **********************************************************************************************/
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+
+            case R.id.save:
+                save();
+                break;
+
+            case R.id.addMore:
+                addMore();
+                break;
+
+            case R.id.addLess:
+                addLess();
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
+    private void save(){
         Word word = new Word(editWord.getEditableText().toString());
+        word.setQuantity(quantity);
         Intent result = new Intent();
         result.putExtra(WordListActivity.NEW_ADDED_WORD, word);
         setResult(Activity.RESULT_OK, result);
         finish();
+    }
+
+    private void addMore(){
+        quantity++;
+        quantityTextView.setText(quantity+"");
+    }
+
+    private void addLess(){
+        quantity--;
+        quantityTextView.setText(quantity+"");
     }
 }
