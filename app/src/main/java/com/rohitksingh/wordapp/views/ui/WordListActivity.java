@@ -30,6 +30,9 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
     private FloatingActionButton addWord;
     private WordListViewModel wordViewModel;
 
+    /***********************************************************************************************
+     *                              Lifecycle Methods
+     **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,7 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         wordRecyclerView.setAdapter(wordListAdapter);
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         wordViewModel = new WordListViewModel(getApplication());
+
         wordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
             @Override
             public void onChanged(List<Word> words) {
@@ -60,6 +64,9 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /***********************************************************************************************
+     *                              Callback methods
+     **********************************************************************************************/
     @Override
     public void onClick(View view) {
         openDetailActivity();
@@ -70,6 +77,9 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         deleteItem(position, word);
     }
 
+    /***********************************************************************************************
+     *                              Private helper methods
+     **********************************************************************************************/
     private void openDetailActivity(){
         startActivityForResult(new Intent(this, WordDetailActivity.class), 2002);
     }

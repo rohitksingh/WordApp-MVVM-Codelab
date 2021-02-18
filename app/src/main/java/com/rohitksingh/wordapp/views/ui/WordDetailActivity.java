@@ -18,6 +18,9 @@ public class WordDetailActivity extends AppCompatActivity implements View.OnClic
     private EditText editWord;
     private Button button;
 
+    /***********************************************************************************************
+     *                              Lifecycle Methods
+     **********************************************************************************************/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,9 @@ public class WordDetailActivity extends AppCompatActivity implements View.OnClic
     }
 
 
+    /***********************************************************************************************
+     *                              Callback methods
+     **********************************************************************************************/
     @Override
     public void onClick(View view) {
         Word word = new Word(editWord.getEditableText().toString());

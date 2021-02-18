@@ -20,6 +20,7 @@ public abstract class WordDataBase extends RoomDatabase {
     public abstract WordDao wordDao();
 
     public static WordDataBase getInstance(final Context context){
+
         if(INSTANCE==null){
             INSTANCE = createInstance(context);
         }

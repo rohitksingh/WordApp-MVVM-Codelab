@@ -30,12 +30,10 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         itemClickListener = (ListItemClickListener)context;
     }
 
-    public void setAllWords(List<Word> allWords){
-        this.allWords = allWords;
-        notifyDataSetChanged();
-    }
 
-
+    /***********************************************************************************************
+     *                              Adapter methods
+     **********************************************************************************************/
     @NonNull
     @Override
     public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,6 +51,17 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         return (allWords!=null) ? allWords.size() : 0;
     }
 
+    /***********************************************************************************************
+     *                              Public helper methods
+     **********************************************************************************************/
+    public void setAllWords(List<Word> allWords){
+        this.allWords = allWords;
+        notifyDataSetChanged();
+    }
+
+    /***********************************************************************************************
+     *                              Viewholder class
+     **********************************************************************************************/
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final TextView wordTextView;
@@ -65,15 +74,15 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             deleteButton.setOnClickListener(this);
         }
 
-        public void bind(Word word){
-            Log.d(TAG, "bind: "+word.getWord() + (wordTextView==null));
-            wordTextView.setText(word.getWord());
-        }
-
         @Override
         public void onClick(View view) {
             itemClickListener.itemClicked(getAdapterPosition(), allWords.get(getAdapterPosition()));
         }
+
+        public void bind(Word word){
+            wordTextView.setText(word.getWord());
+        }
+
     }
 
 }
