@@ -1,4 +1,4 @@
-package com.rohitksingh.wordapp.entities;
+package com.rohitksingh.wordapp;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
