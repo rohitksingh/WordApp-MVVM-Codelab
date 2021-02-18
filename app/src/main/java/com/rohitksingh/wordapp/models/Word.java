@@ -1,4 +1,4 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.models;
 
 import java.io.Serializable;
 

@@ -1,11 +1,8 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.views.ui;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +13,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rohitksingh.wordapp.R;
+import com.rohitksingh.wordapp.models.Word;
+import com.rohitksingh.wordapp.views.adapters.WordListAdapter;
+import com.rohitksingh.wordapp.viewmodels.WordListViewModel;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView wordRecyclerView;
     private WordListAdapter wordListAdapter;
     private FloatingActionButton addWord;
-    private WordViewModel wordViewModel;
+    private WordListViewModel wordViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         wordListAdapter = new WordListAdapter(this);
         wordRecyclerView.setAdapter(wordListAdapter);
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        wordViewModel = new WordViewModel(getApplication());
+        wordViewModel = new WordListViewModel(getApplication());
         wordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
             @Override
             public void onChanged(List<Word> words) {

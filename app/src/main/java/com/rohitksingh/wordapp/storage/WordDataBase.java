@@ -1,6 +1,9 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.storage;
 
 import android.content.Context;
+
+import com.rohitksingh.wordapp.models.Word;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;

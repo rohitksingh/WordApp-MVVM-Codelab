@@ -1,18 +1,21 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.viewmodels;
 
 import android.app.Application;
+
+import com.rohitksingh.wordapp.models.Word;
+import com.rohitksingh.wordapp.repositories.WordRepository;
 
 import java.util.List;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-public class WordViewModel extends AndroidViewModel {
+public class WordListViewModel extends AndroidViewModel {
 
     private WordRepository wordRepository;
     private LiveData<List<Word>> allWords;
 
-    public WordViewModel(Application application){
+    public WordListViewModel(Application application){
         super(application);
         wordRepository = new WordRepository(application);
         allWords = wordRepository.getWords();

@@ -1,7 +1,11 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;
+
+import com.rohitksingh.wordapp.models.Word;
+import com.rohitksingh.wordapp.storage.WordDao;
+import com.rohitksingh.wordapp.storage.WordDataBase;
 
 import java.util.List;
 

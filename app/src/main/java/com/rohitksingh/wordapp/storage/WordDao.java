@@ -1,6 +1,6 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.storage;
 
-import com.rohitksingh.wordapp.Word;
+import com.rohitksingh.wordapp.models.Word;
 
 import java.util.List;
 

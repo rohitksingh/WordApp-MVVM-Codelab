@@ -1,4 +1,4 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.views.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.rohitksingh.wordapp.R;
+import com.rohitksingh.wordapp.models.Word;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 

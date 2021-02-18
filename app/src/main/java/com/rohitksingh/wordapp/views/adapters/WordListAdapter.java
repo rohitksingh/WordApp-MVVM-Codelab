@@ -1,4 +1,4 @@
-package com.rohitksingh.wordapp;
+package com.rohitksingh.wordapp.views.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,7 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rohitksingh.wordapp.R;
+import com.rohitksingh.wordapp.models.Word;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     private LayoutInflater inflater;
     private List<Word> allWords;
 
-    WordListAdapter(Context context){
+    public WordListAdapter(Context context){
         inflater = LayoutInflater.from(context);
     }
 
@@ -29,6 +30,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         this.allWords = allWords;
         notifyDataSetChanged();
     }
+
 
     @NonNull
     @Override
