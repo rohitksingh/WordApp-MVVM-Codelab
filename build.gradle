@@ -12,6 +12,11 @@ buildscript {
     }
 }
 
+ext {
+    roomVersion = '2.2.6'
+    archLifecycleVersion = '2.3.0'
+}
+
 allprojects {
     repositories {
         google()
