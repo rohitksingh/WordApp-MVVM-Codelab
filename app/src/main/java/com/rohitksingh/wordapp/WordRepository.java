@@ -22,7 +22,7 @@ public class WordRepository {
     }
 
     public void addWord(Word word){
-        wordDao.addWord(word);
+       new insertAsyncTask(wordDao).execute(word);
     }
 
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {

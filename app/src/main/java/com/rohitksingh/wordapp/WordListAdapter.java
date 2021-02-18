@@ -1,6 +1,7 @@
 package com.rohitksingh.wordapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder>{
+
+    private static final String TAG = "WordListAdapter";
 
     private LayoutInflater inflater;
     private List<Word> allWords;
@@ -30,7 +33,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     @NonNull
     @Override
     public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.activity_word_list, parent, false);
+        View view = inflater.inflate(R.layout.item_word_list, parent, false);
         return new WordViewHolder(view);
     }
 
@@ -54,6 +57,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         }
 
         public void bind(Word word){
+            Log.d(TAG, "bind: "+word.getWord() + (wordTextView==null));
             wordTextView.setText(word.getWord());
         }
     }

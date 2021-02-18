@@ -2,6 +2,10 @@ package com.rohitksingh.wordapp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,12 +17,16 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 public class WordListActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String NEW_ADDED_WORD = "WordListActivity.NewAddedWord";
 
     private RecyclerView wordRecyclerView;
     private WordListAdapter wordListAdapter;
     private FloatingActionButton addWord;
-    public static final String NEW_ADDED_WORD = "WordListActivity.NewAddedWord";
+    private WordViewModel wordViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,14 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         wordListAdapter = new WordListAdapter(this);
         wordRecyclerView.setAdapter(wordListAdapter);
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        wordViewModel = new WordViewModel(getApplication());
+        wordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
+            @Override
+            public void onChanged(List<Word> words) {
+                wordListAdapter.setAllWords(words);
+            }
+        });
+
     }
 
     @Override
@@ -37,6 +53,7 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode== Activity.RESULT_OK){
             Word word = (Word) data.getSerializableExtra(NEW_ADDED_WORD);
+            wordViewModel.addWord(word);
             Toast.makeText(this, word.getWord(), Toast.LENGTH_SHORT).show();
         }
     }
