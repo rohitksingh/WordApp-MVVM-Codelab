@@ -9,10 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rohitksingh.wordapp.R;
+import com.rohitksingh.wordapp.databinding.ActivityWordDetailBinding;
 import com.rohitksingh.wordapp.models.Word;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 public class WordDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,21 +23,26 @@ public class WordDetailActivity extends AppCompatActivity implements View.OnClic
     private TextView quantityTextView;
     int quantity = 0;
 
+    ActivityWordDetailBinding binding;
+
     /***********************************************************************************************
      *                              Lifecycle Methods
      **********************************************************************************************/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_word_detail);
-        editWord = findViewById(R.id.editWord);
-        quantityTextView = findViewById(R.id.quantity);
-        button = findViewById(R.id.save);
-        addMore = findViewById(R.id.addMore);
-        addLess = findViewById(R.id.addLess);
-        button.setOnClickListener(this);
-        addMore.setOnClickListener(this);
-        addLess.setOnClickListener(this);
+        initDataBinding();
+
+
+//        setContentView(R.layout.activity_word_detail);
+//        editWord = findViewById(R.id.editWord);
+//        quantityTextView = findViewById(R.id.quantity);
+//        button = findViewById(R.id.save);
+//        addMore = findViewById(R.id.addMore);
+//        addLess = findViewById(R.id.addLess);
+//        button.setOnClickListener(this);
+//        addMore.setOnClickListener(this);
+//        addLess.setOnClickListener(this);
     }
 
 
@@ -62,6 +69,11 @@ public class WordDetailActivity extends AppCompatActivity implements View.OnClic
                 break;
 
         }
+    }
+
+    private void initDataBinding(){
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_word_detail);
+        binding.setLifecycleOwner(this);
     }
 
     private void save(){
