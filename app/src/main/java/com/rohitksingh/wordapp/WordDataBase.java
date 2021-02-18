@@ -14,7 +14,7 @@ public abstract class WordDataBase extends RoomDatabase {
 
     public static WordDataBase INSTANCE;
 
-    public abstract WordDao createWordDao();
+    public abstract WordDao wordDao();
 
     public static WordDataBase getInstance(final Context context){
         if(INSTANCE==null){

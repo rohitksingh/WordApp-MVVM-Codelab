@@ -14,7 +14,7 @@ import androidx.room.Query;
 public interface WordDao {
 
     @Insert
-    public void addWord(String word);
+    public void addWord(Word word);
 
     @Query("DELETE from word_table")
     public void deleteAllWords();
