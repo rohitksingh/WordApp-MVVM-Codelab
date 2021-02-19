@@ -22,8 +22,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class WordDetailActivity extends AppCompatActivity{
 
-    int quantity = 0;
-
     private ActivityWordDetailBinding binding;
     private WordDetailViewModel viewModel;
 
@@ -56,13 +54,4 @@ public class WordDetailActivity extends AppCompatActivity{
         finish();
     }
 
-    private void addMore(){
-//        quantity++;
-//        quantityTextView.setText(quantity+"");
-    }
-
-    private void addLess(){
-//        quantity--;
-//        quantityTextView.setText(quantity+"");
-    }
 }
