@@ -24,6 +24,10 @@ public class Word implements Serializable {
         this.word = word;
     }
 
+    public void setWord(@NonNull String word) {
+        this.word = word;
+    }
+
     public String getWord() {
         return word;
     }
@@ -34,5 +38,13 @@ public class Word implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "word='" + word + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

@@ -49,7 +49,9 @@ public class WordDetailActivity extends AppCompatActivity{
 
     private void save(){
         Intent result = new Intent();
-        result.putExtra(WordListActivity.NEW_ADDED_WORD, viewModel.wordLiveData.getValue());
+        Word word = viewModel.wordLiveData.getValue();
+        word.setWord(viewModel.wordName.getValue());
+        result.putExtra(WordListActivity.NEW_ADDED_WORD, word);
         setResult(Activity.RESULT_OK, result);
         finish();
     }

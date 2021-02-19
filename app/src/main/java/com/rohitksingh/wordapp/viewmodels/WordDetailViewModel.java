@@ -15,11 +15,14 @@ public class WordDetailViewModel extends AndroidViewModel {
     private static final String TAG = "WordDetailViewModel";
     public MutableLiveData<Word> wordLiveData = new MutableLiveData<>();
     public MutableLiveData<Integer> signal = new MutableLiveData();
+    public MutableLiveData<String> wordName = new MutableLiveData<>();
+
     public static final int SET_RESULT = 23982;
     
     public WordDetailViewModel(@NonNull Application application) {
         super(application);
-        wordLiveData.setValue(new Word(""));
+        wordLiveData.setValue(new Word("Mango"));
+        wordName.setValue("Kiwiq");
     }
 
     public void increaseQuantity(){

@@ -2,6 +2,7 @@ package com.rohitksingh.wordapp.repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.rohitksingh.wordapp.models.Word;
 import com.rohitksingh.wordapp.storage.WordDao;
@@ -13,6 +14,7 @@ import androidx.lifecycle.LiveData;
 
 public class WordRepository {
 
+    private static final String TAG = "WordRepository";
     private WordDao wordDao;
     private LiveData<List<Word>> words;
 
@@ -55,6 +57,7 @@ public class WordRepository {
             switch (taskType){
 
                 case ADD:
+                    Log.d(TAG, "doInBackground: "+word.toString());
                     wordDao.addWord(word);
                     break;
 
