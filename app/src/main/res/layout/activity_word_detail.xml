@@ -6,6 +6,7 @@
         <variable
             name="viewModel"
             type="com.rohitksingh.wordapp.viewmodels.WordDetailViewModel" />
+        <import type="com.rohitksingh.wordapp.utilities.BindingConverters" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,8 +22,7 @@
             android:layout_margin="48dp"
             android:background="@color/design_default_color_secondary"
             app:layout_constraintVertical_bias="0.19999999"
-            android:text="@={viewModel.wordName}"
-            />
+            android:text="@={viewModel.wordName}" />
         <TextView
             android:id="@+id/quantity"
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
             app:layout_constraintBottom_toTopOf="@+id/editWord"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="@{String.valueOf(viewModel.wordLiveData.quantity)}" />
+            tools:text="@{BindingConverters.intToString(viewModel.wordLiveData.quantity)}" />
         <Button
             android:id="@+id/addMore"
             app:layout_constraintStart_toStartOf="@+id/editWord"
