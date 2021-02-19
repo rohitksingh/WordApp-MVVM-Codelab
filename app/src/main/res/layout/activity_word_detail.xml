@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.rohitksingh.wordapp.viewmodels.WordDetailViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,20 +29,23 @@
             app:layout_constraintBottom_toTopOf="@+id/editWord"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Quantity 1" />
+            tools:text="@{String.valueOf(viewModel.wordLiveData.quantity)}" />
         <Button
             android:id="@+id/addMore"
             app:layout_constraintStart_toStartOf="@+id/editWord"
             app:layout_constraintTop_toBottomOf="@+id/editWord"
             style="@style/QuantityButtons"
             android:text="@string/add_more"
+            android:onClick="@{() -> viewModel.increaseQuantity()}"
             />
         <Button
             android:id="@+id/addLess"
             app:layout_constraintEnd_toEndOf="@+id/editWord"
             app:layout_constraintTop_toBottomOf="@+id/editWord"
             android:text="@string/add_less"
-            style="@style/QuantityButtons" />
+            style="@style/QuantityButtons"
+            android:onClick="@{() -> viewModel.decreaseQuantity()}"
+            />
         <Button
             android:id="@+id/save"
             android:layout_width="wrap_content"
@@ -48,7 +56,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editWord"
             app:layout_constraintVertical_bias="0.18"
-            android:text="@string/save" />
+            android:text="@string/save"
+            android:onClick="@{ () -> viewModel.saveItem()}"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

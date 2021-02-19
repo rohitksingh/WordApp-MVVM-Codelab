@@ -18,6 +18,8 @@ public class Word implements Serializable {
     @ColumnInfo(name = "quantity")
     public int quantity;
 
+    public Word(){ }
+
     public Word(@NonNull String word) {
         this.word = word;
     }
