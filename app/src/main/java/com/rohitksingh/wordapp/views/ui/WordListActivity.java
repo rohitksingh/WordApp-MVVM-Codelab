@@ -3,6 +3,7 @@ package com.rohitksingh.wordapp.views.ui;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,8 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         wordListAdapter = new WordListAdapter(this);
         wordRecyclerView.setAdapter(wordListAdapter);
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        wordViewModel = new WordListViewModel(getApplication());
+
+        wordViewModel = ViewModelProviders.of(this).get(WordListViewModel.class);
 
         wordViewModel.getAllWords().observe(this, words -> {
             wordListAdapter.setAllWords(words);
