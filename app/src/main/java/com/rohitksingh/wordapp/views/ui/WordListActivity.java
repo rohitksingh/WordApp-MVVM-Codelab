@@ -24,6 +24,9 @@ import java.util.List;
 public class WordListActivity extends AppCompatActivity implements View.OnClickListener, ListItemClickListener {
 
     public static final String NEW_ADDED_WORD = "WordListActivity.NewAddedWord";
+    public static final int ADD_MODE = 1;
+    public static final int EDIT_MODE = 2;
+
 
     private RecyclerView wordRecyclerView;
     private WordListAdapter wordListAdapter;
@@ -45,7 +48,10 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         wordViewModel = new WordListViewModel(getApplication());
 
-        wordViewModel.getAllWords().observe(this, words -> { wordListAdapter.setAllWords(words);});
+        wordViewModel.getAllWords().observe(this, words -> {
+            wordListAdapter.setAllWords(words);
+            Toast.makeText(this, "Updating", Toast.LENGTH_LONG).show();
+        });
 
     }
 
@@ -53,9 +59,17 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode== Activity.RESULT_OK){
+
             Word word = (Word) data.getSerializableExtra(NEW_ADDED_WORD);
-            wordViewModel.addWord(word);
-            Toast.makeText(this, word.getWord(), Toast.LENGTH_SHORT).show();
+
+            if(requestCode==ADD_MODE){
+                wordViewModel.addWord(word);
+            }else if(requestCode==EDIT_MODE){
+                Toast.makeText(this, word.getWord(), Toast.LENGTH_SHORT).show();
+                wordViewModel.updateWord(word);
+            }
+
+
         }
     }
 
@@ -81,14 +95,13 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
      *                              Private helper methods
      **********************************************************************************************/
     private void openDetailActivity(){
-        startActivityForResult(new Intent(this, WordDetailActivity.class), 2002);
+        startActivityForResult(new Intent(this, WordDetailActivity.class), ADD_MODE);
     }
 
     private void openEditActivity(Word word){
-        Intent editWord = new Intent(this, WordEditActivity.class);
-        editWord.putExtra(WordEditActivity.EDIT_WORD, word);
-        startActivityForResult(editWord, 3003);
-
+        Intent editWordIntent = new Intent(this, WordDetailActivity.class);
+        editWordIntent.putExtra(NEW_ADDED_WORD, word);
+        startActivityForResult(editWordIntent, EDIT_MODE);
     }
 
     private void deleteWord(int position, Word word){

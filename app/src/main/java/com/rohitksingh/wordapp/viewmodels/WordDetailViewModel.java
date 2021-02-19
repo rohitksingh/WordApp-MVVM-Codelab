@@ -7,7 +7,6 @@ import com.rohitksingh.wordapp.models.Word;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 public class WordDetailViewModel extends AndroidViewModel {
@@ -15,14 +14,13 @@ public class WordDetailViewModel extends AndroidViewModel {
     private static final String TAG = "WordDetailViewModel";
     public MutableLiveData<Word> wordLiveData = new MutableLiveData<>();
     public MutableLiveData<Integer> signal = new MutableLiveData();
-    public MutableLiveData<String> wordName = new MutableLiveData<>();
 
-    public static final int SET_RESULT = 23982;
+    public static final int SAVE_BUTTON_CLICKED = 1000;
     
     public WordDetailViewModel(@NonNull Application application) {
         super(application);
-        wordLiveData.setValue(new Word("Mango"));
-        wordName.setValue("Kiwiq");
+        Word word = new Word();
+        wordLiveData.setValue(word);
     }
 
     public void increaseQuantity(){
@@ -38,7 +36,7 @@ public class WordDetailViewModel extends AndroidViewModel {
     }
 
     public void saveItem(){
-        signal.postValue(SET_RESULT);
+        signal.postValue(SAVE_BUTTON_CLICKED);
     }
 
 }

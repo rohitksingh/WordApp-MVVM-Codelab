@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.ui.WordDetailActivity"/>
-        <activity android:name=".views.ui.WordEditActivity"/>
     </application>
 
 </manifest>

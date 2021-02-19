@@ -3,10 +3,7 @@ package com.rohitksingh.wordapp.views.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.rohitksingh.wordapp.R;
 import com.rohitksingh.wordapp.databinding.ActivityWordDetailBinding;
@@ -16,8 +13,6 @@ import com.rohitksingh.wordapp.viewmodels.WordDetailViewModel;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 public class WordDetailActivity extends AppCompatActivity{
@@ -32,11 +27,8 @@ public class WordDetailActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initDataBinding();
-        viewModel.signal.observe(this, signalValue -> {
-            if(signalValue==WordDetailViewModel.SET_RESULT){
-                save();
-            }
-        });
+        getSavedData();
+        observeViewModel();
     }
 
 
@@ -50,10 +42,25 @@ public class WordDetailActivity extends AppCompatActivity{
     private void save(){
         Intent result = new Intent();
         Word word = viewModel.wordLiveData.getValue();
-        word.setWord(viewModel.wordName.getValue());
         result.putExtra(WordListActivity.NEW_ADDED_WORD, word);
         setResult(Activity.RESULT_OK, result);
         finish();
     }
+
+    private void getSavedData(){
+        if(getIntent().getSerializableExtra(WordListActivity.NEW_ADDED_WORD)!=null){
+            Word savedWord = (Word) getIntent().getSerializableExtra(WordListActivity.NEW_ADDED_WORD);
+            viewModel.wordLiveData.setValue(savedWord);
+        }
+    }
+
+    private void observeViewModel(){
+        viewModel.signal.observe(this, signalValue -> {
+            if(signalValue==WordDetailViewModel.SAVE_BUTTON_CLICKED){
+                save();
+            }
+        });
+    }
+
 
 }

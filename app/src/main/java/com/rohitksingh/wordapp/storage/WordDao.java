@@ -9,6 +9,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 //Doa is the place where you write SQL Query
 @Dao
@@ -16,6 +17,9 @@ public interface WordDao {
 
     @Insert
     void addWord(Word word);
+
+    @Update
+    void updateWord(Word word);
 
     @Query("DELETE from word_table")
     void deleteAllWords();
@@ -25,5 +29,6 @@ public interface WordDao {
 
     @Delete
     void deleteItem(Word word);
+
 
 }

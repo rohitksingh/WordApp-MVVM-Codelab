@@ -3,6 +3,7 @@ package com.rohitksingh.wordapp.repositories;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 
 import com.rohitksingh.wordapp.models.Word;
 import com.rohitksingh.wordapp.storage.WordDao;
@@ -28,7 +29,11 @@ public class WordRepository {
     }
 
     public void addWord(Word word){
-       new dbAsyncTask(wordDao, dbAsyncTask.ADD).execute(word);
+        new dbAsyncTask(wordDao, dbAsyncTask.ADD).execute(word);
+    }
+
+    public void updateWord(Word word){
+        new dbAsyncTask(wordDao, dbAsyncTask.UPDATE).execute(word);
     }
 
     public void deleteWord(Word word){
@@ -39,9 +44,11 @@ public class WordRepository {
 
         private WordDao wordDao;
         private int taskType;
-        public static final int ADD = 21242;
-        public static final int UPDATE = 34232;
-        public static final int DELETE = 43465;
+        public static final int ADD = 1000;
+        public static final int UPDATE = 1001;
+        public static final int DELETE = 1002;
+
+
 
 
         dbAsyncTask(WordDao wordDao, int taskType){
@@ -57,9 +64,11 @@ public class WordRepository {
             switch (taskType){
 
                 case ADD:
-                    Log.d(TAG, "doInBackground: "+word.toString());
                     wordDao.addWord(word);
                     break;
+
+                case UPDATE:
+                    wordDao.updateWord(word);
 
                 case DELETE:
                     wordDao.deleteItem(word);
