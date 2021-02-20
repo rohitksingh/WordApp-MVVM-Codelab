@@ -9,11 +9,13 @@ import java.util.List;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 public class WordListViewModel extends AndroidViewModel {
 
     private WordRepository wordRepository;
     private LiveData<List<Word>> allWords;
+    public MutableLiveData<Integer> actionOpenDetailActivity = new MutableLiveData<>();
 
     public WordListViewModel(Application application){
         super(application);
@@ -23,6 +25,10 @@ public class WordListViewModel extends AndroidViewModel {
 
     public LiveData<List<Word>> getAllWords(){
         return allWords;
+    }
+
+    public void openDetailActivityRequested(){
+        actionOpenDetailActivity.setValue(1);
     }
 
     public void addWord(Word word){
