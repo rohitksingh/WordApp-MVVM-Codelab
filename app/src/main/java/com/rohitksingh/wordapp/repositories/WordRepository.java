@@ -69,6 +69,7 @@ public class WordRepository {
 
                 case UPDATE:
                     wordDao.updateWord(word);
+                    break;
 
                 case DELETE:
                     wordDao.deleteItem(word);

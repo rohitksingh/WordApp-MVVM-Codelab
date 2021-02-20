@@ -10,8 +10,12 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "word_table")
 public class Word implements Serializable {
 
-    @PrimaryKey
+
+    @PrimaryKey(autoGenerate = true)
     @NonNull
+    @ColumnInfo(name = "id")
+    public long id;
+
     @ColumnInfo(name = "word")
     public String word;
 

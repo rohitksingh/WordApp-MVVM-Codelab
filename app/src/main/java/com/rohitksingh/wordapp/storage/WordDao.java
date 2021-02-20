@@ -19,7 +19,7 @@ public interface WordDao {
     void addWord(Word word);
 
     @Update
-    void updateWord(Word word);
+    int updateWord(Word word);
 
     @Query("DELETE from word_table")
     void deleteAllWords();
