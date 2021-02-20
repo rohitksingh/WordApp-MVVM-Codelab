@@ -1,31 +1,30 @@
 package com.rohitksingh.wordapp.views.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.rohitksingh.wordapp.R;
 import com.rohitksingh.wordapp.callbacks.ListItemClickListener;
+import com.rohitksingh.wordapp.databinding.ItemWordListBinding;
 import com.rohitksingh.wordapp.models.Word;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder>{
 
     private static final String TAG = "WordListAdapter";
 
-    private LayoutInflater inflater;
     private List<Word> allWords;
     private ListItemClickListener itemClickListener;
 
     public WordListAdapter(Context context){
-        inflater = LayoutInflater.from(context);
         itemClickListener = (ListItemClickListener)context;
     }
 
@@ -36,18 +35,18 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     @NonNull
     @Override
     public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_word_list, parent, false);
-        return new WordViewHolder(view);
+        ItemWordListBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_word_list, parent, false);
+        return new WordViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
-        holder.bind(allWords.get(position));
+        holder.bind(allWords.get(position), position, itemClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return (allWords!=null) ? allWords.size() : 0;
+        return allWords!=null ? allWords.size() : 0;
     }
 
     /***********************************************************************************************
@@ -58,48 +57,26 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         notifyDataSetChanged();
     }
 
+
     /***********************************************************************************************
      *                              Viewholder class
      **********************************************************************************************/
-    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class WordViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView wordTextView;
-        private Button deleteButton;
-        private Button editButton;
+        ItemWordListBinding binding;
 
-        WordViewHolder(@NonNull View itemView) {
-            super(itemView);
-            wordTextView = itemView.findViewById(R.id.word);
-            deleteButton = itemView.findViewById(R.id.delete);
-            editButton = itemView.findViewById(R.id.edit);
-            deleteButton.setOnClickListener(this);
-            editButton.setOnClickListener(this);
+        WordViewHolder(@NonNull ItemWordListBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
-        @Override
-        public void onClick(View view) {
+        public void bind(Word word, int position,  ListItemClickListener itemClickListener){
 
-            int index = getAdapterPosition();
-            Word word = allWords.get(index);
+            binding.setWord(word);
+            binding.setPosition(position);
+            binding.setItemClickListener(itemClickListener);
+            Log.d(TAG, "bind: "+word.toString());
 
-            switch (view.getId()){
-
-                case R.id.delete:
-                    itemClickListener.deleteItem(index, word);
-                    break;
-
-                case R.id.edit:
-                    itemClickListener.editItem(index, word);
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
-
-        public void bind(Word word){
-            wordTextView.setText(word.getWord());
         }
 
     }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import java.util.List;
 
 public class WordListActivity extends AppCompatActivity implements View.OnClickListener, ListItemClickListener {
 
+    private static final String TAG = "WordListActivity";
     public static final String NEW_ADDED_WORD = "WordListActivity.NewAddedWord";
     public static final int ADD_MODE = 1;
     public static final int EDIT_MODE = 2;
@@ -40,11 +42,13 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_word_list);
         addWord = findViewById(R.id.addWord);
         addWord.setOnClickListener(this);
         wordRecyclerView = findViewById(R.id.wordRecyclerView);
         wordListAdapter = new WordListAdapter(this);
+
         wordRecyclerView.setAdapter(wordListAdapter);
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -85,11 +89,14 @@ public class WordListActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void deleteItem(int position, Word word) {
+
         deleteWord(position, word);
     }
 
     @Override
     public void editItem(int position, Word word) {
+
+        Log.d(TAG, "editItem: "+word.toString() +" position = "+position);
         openEditActivity(word);
     }
 
